@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Standalone AWS Config Rule: rds-storage-encrypted"
+
+Resources:
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-33-rds-storage-encrypted"
+      Description: "RDS DB 인스턴스에 대해 스토리지 암호화가 활성화되어 있는지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "RDS_STORAGE_ENCRYPTED"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::RDS::DBInstance"

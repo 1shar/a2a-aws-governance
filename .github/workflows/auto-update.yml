@@ -1,0 +1,40 @@
+name: Auto Update AWS Config Rules
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install -r a2a_governance/requirements.txt
+
+    - name: Run script to generate rules
+      run: python a2a_governance/main.py
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add a2a_governance/output/
+        # 변경 사항이 있을 경우에만 커밋 및 푸시
+        if ! git diff --staged --quiet; then
+          git commit -m "[Automated] Update AWS Config rules and documentation"
+          git push
+        else
+          echo "No changes to commit."
+        fi

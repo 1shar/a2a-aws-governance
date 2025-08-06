@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Standalone AWS Config Rule: elb-custom-security-policy-ssl-check"
+
+Resources:
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-24-elb-custom-security-policy-ssl-check"
+      Description: "클래식 로드 밸런서가 사용자 지정 보안 정책을 사용하고 있는지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "ELB_CUSTOM_SECURITY_POLICY_SSL_CHECK"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::ElasticLoadBalancing::LoadBalancer"

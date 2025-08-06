@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Standalone AWS Config Rule: root-account-usage-check"
+
+Resources:
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-02-root-account-usage-check"
+      Description: "루트 계정이 지난 24시간 동안 사용되었는지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "ROOT_ACCOUNT_USED"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::IAM::User"

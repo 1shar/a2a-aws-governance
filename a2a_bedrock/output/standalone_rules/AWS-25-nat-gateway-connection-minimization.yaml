@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Standalone AWS Config Rule: nat-gateway-connection-minimization"
+
+Resources:
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-25-nat-gateway-connection-minimization"
+      Description: "(사용자 지정 규칙) NAT 게이트웨이 연결을 최소화하는지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "CUSTOM_LAMBDA_RULE"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::EC2::NatGateway"

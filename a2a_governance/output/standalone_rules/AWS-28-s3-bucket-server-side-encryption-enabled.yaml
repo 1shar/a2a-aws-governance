@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Standalone AWS Config Rule: s3-bucket-server-side-encryption-enabled"
+
+Resources:
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-28-s3-bucket-server-side-encryption-enabled"
+      Description: "S3 버킷에 서버 측 암호화가 활성화되어 있는지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::S3::Bucket"

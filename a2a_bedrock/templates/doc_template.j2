@@ -1,0 +1,27 @@
+# AWS Config Rules Documentation
+
+## Summary of Rules
+
+| Rule ID | Rule Name | Description |
+|---|---|---|
+{% for rule in rules %}| {{ rule.id }} | {{ rule.name }} | {{ rule.description }} |
+{% endfor %}
+
+---
+
+## Rule Details
+
+{% for rule in rules %}
+### {{ rule.id }}-{{ rule.name }}
+
+**Description**
+> {{ rule.description }}
+
+**Rationale**
+> {{ rule.rationale }}
+
+**Remediation**
+> {{ rule.remediation }}
+
+---
+{% endfor %}

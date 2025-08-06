@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Standalone AWS Config Rule: rds-minor-version-upgrade-enabled"
+
+Resources:
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-36-rds-minor-version-upgrade-enabled"
+      Description: "RDS DB 인스턴스에 부 버전 업그레이드가 활성화되어 있는지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "RDS_MINOR_VERSION_UPGRADE_ENABLED"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::RDS::DBInstance"

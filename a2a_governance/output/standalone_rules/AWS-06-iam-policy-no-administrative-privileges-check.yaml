@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Standalone AWS Config Rule: iam-policy-no-administrative-privileges-check"
+
+Resources:
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-06-iam-policy-no-administrative-privileges-check"
+      Description: "IAM 정책이 관리자 권한을 부여하지 않는지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "IAM_POLICY_NO_ADMINISTRATIVE_PRIVILEGES"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::IAM::Policy"

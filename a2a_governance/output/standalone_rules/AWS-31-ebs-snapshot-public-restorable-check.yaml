@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Standalone AWS Config Rule: ebs-snapshot-public-restorable-check"
+
+Resources:
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-31-ebs-snapshot-public-restorable-check"
+      Description: "EBS 스냅샷이 공개적으로 복원 가능하지 않은지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "EBS_SNAPSHOT_PUBLIC_RESTORABLE_CHECK"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::EC2::Snapshot"

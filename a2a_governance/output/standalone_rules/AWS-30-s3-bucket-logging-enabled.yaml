@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Standalone AWS Config Rule: s3-bucket-logging-enabled"
+
+Resources:
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-30-s3-bucket-logging-enabled"
+      Description: "S3 버킷에 로깅이 활성화되어 있는지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "S3_BUCKET_LOGGING_ENABLED"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::S3::Bucket"
