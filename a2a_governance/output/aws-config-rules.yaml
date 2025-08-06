@@ -15,30 +15,6 @@ Resources:
   ConfigRule2:
     Type: 'AWS::Config::ConfigRule'
     Properties:
-      ConfigRuleName: "AWS-02-root-account-usage-check"
-      Description: "루트 계정이 지난 24시간 동안 사용되었는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "ROOT_ACCOUNT_USED"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::IAM::User"
-
-  ConfigRule3:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-03-root-account-access-key-check"
-      Description: "루트 계정에 활성 액세스 키가 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "IAM_ROOT_ACCESS_KEY_CHECK"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::IAM::User"
-
-  ConfigRule4:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
       ConfigRuleName: "AWS-04-iam-user-access-key-check"
       Description: "IAM 사용자의 액세스 키가 지정된 일 수(기본값 90일) 내에 교체되었는지 확인합니다."
       Source:
@@ -48,7 +24,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::IAM::User"
 
-  ConfigRule5:
+  ConfigRule3:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-05-iam-password-policy-check"
@@ -60,7 +36,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::IAM::User"
 
-  ConfigRule6:
+  ConfigRule4:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-06-iam-policy-no-administrative-privileges-check"
@@ -72,199 +48,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::IAM::Policy"
 
-  ConfigRule7:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-07-iam-role-creation-minimized"
-      Description: "(사용자 지정 규칙) IAM 역할 생성을 최소화하고 모니터링합니다. 이 규칙은 새 역할 생성을 추적하기 위해 사용자 지정 Lambda 함수가 필요합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "CUSTOM_LAMBDA_RULE"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::IAM::Role"
-
-  ConfigRule8:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-08-bedrock-access-management"
-      Description: "(사용자 지정 규칙) AWS Bedrock에 대한 접근을 관리하고 모니터링합니다. 이 규칙은 Bedrock 관련 권한 변경을 감지하기 위해 사용자 지정 Lambda 함수가 필요합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "CUSTOM_LAMBDA_RULE"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::IAM::Policy"
-
-  ConfigRule9:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-09-ec2-instance-profile-check"
-      Description: "EC2 인스턴스가 인스턴스 프로파일을 사용하고 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "EC2_INSTANCE_PROFILE_ATTACHED"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::EC2::Instance"
-
-  ConfigRule10:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-10-instance-logging-check"
-      Description: "인스턴스 로깅 설정 (CloudWatch Logs 암호화)을 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "CLOUDWATCH_LOG_GROUP_ENCRYPTED"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::Logs::LogGroup"
-
-  ConfigRule11:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-11-ec2-no-public-ip-check"
-      Description: "EC2 인스턴스에 퍼블릭 IP 주소가 없는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "EC2_INSTANCE_NO_PUBLIC_IP"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::EC2::Instance"
-
-  ConfigRule12:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-12-ami-not-public-check"
-      Description: "가상머신 이미지(AMI)가 퍼블릭으로 설정되지 않았는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "AMI_BLOCK_PUBLIC_ACCESS"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::EC2::Image"
-
-  ConfigRule13:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-13-lambda-function-no-secrets"
-      Description: "(사용자 지정 규칙) 서버리스 함수 코드에 Secrets 값이 직접 입력되지 않았는지 확인합니다. 이 규칙은 함수 코드를 스캔하기 위해 사용자 지정 Lambda 함수가 필요합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "CUSTOM_LAMBDA_RULE"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::Lambda::Function"
-
-  ConfigRule14:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-20-vpc-network-separation"
-      Description: "(사용자 지정 규칙) 개발, 스테이징, 프로덕션 환경에 대한 VPC 망분리가 필요한지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "CUSTOM_LAMBDA_RULE"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::EC2::VPC"
-
-  ConfigRule15:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-21-vpc-peering-restriction"
-      Description: "(사용자 지정 규칙) 환경 간 VPC 피어링을 금지하는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "CUSTOM_LAMBDA_RULE"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::EC2::VPCPeeringConnection"
-
-  ConfigRule16:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-22-vpc-flow-logs-enabled"
-      Description: "Amazon Virtual Private Cloud(VPC) 흐름 로그가 활성화되어 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "VPC_FLOW_LOGS_ENABLED"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::EC2::VPC"
-
-  ConfigRule17:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-23-restricted-common-ports"
-      Description: "사용 중인 보안 그룹이 지정된 IP 주소에 대해 무제한 수신 트래픽을 허용하는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "RESTRICTED_INCOMING_TRAFFIC"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::EC2::SecurityGroup"
-
-  ConfigRule18:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-24-elb-custom-security-policy-ssl-check"
-      Description: "클래식 로드 밸런서가 사용자 지정 보안 정책을 사용하고 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "ELB_CUSTOM_SECURITY_POLICY_SSL_CHECK"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::ElasticLoadBalancing::LoadBalancer"
-
-  ConfigRule19:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-25-nat-gateway-connection-minimization"
-      Description: "(사용자 지정 규칙) NAT 게이트웨이 연결을 최소화하는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "CUSTOM_LAMBDA_RULE"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::EC2::NatGateway"
-
-  ConfigRule20:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-26-elbv2-listener-https-only"
-      Description: "애플리케이션 로드 밸런서 및 네트워크 로드 밸런서 리스너가 HTTPS용으로 구성되어 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "ELB_V2_LISTENER_HTTPS_ONLY"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::ElasticLoadBalancingV2::LoadBalancer"
-
-  ConfigRule21:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-27-elbv2-access-logs-enabled"
-      Description: "애플리케이션 로드 밸런서 및 네트워크 로드 밸런서에 액세스 로깅이 활성화되어 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "ELB_V2_ACCESS_LOGS_ENABLED"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::ElasticLoadBalancingV2::LoadBalancer"
-
-  ConfigRule22:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-28-s3-bucket-server-side-encryption-enabled"
-      Description: "S3 버킷에 서버 측 암호화가 활성화되어 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::S3::Bucket"
-
-  ConfigRule23:
+  ConfigRule5:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-29-s3-bucket-public-access-prohibited"
@@ -276,7 +60,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::S3::Bucket"
 
-  ConfigRule24:
+  ConfigRule6:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-30-s3-bucket-logging-enabled"
@@ -288,19 +72,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::S3::Bucket"
 
-  ConfigRule25:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-31-ebs-snapshot-public-restorable-check"
-      Description: "EBS 스냅샷이 공개적으로 복원 가능하지 않은지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "EBS_SNAPSHOT_PUBLIC_RESTORABLE_CHECK"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::EC2::Snapshot"
-
-  ConfigRule26:
+  ConfigRule7:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-32-encrypted-volumes"
@@ -312,7 +84,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::EC2::Volume"
 
-  ConfigRule27:
+  ConfigRule8:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-33-rds-storage-encrypted"
@@ -324,7 +96,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::RDS::DBInstance"
 
-  ConfigRule28:
+  ConfigRule9:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-34-rds-snapshots-public-prohibited"
@@ -335,39 +107,3 @@ Resources:
       Scope:
         ComplianceResourceTypes:
           - "AWS::RDS::DBSnapshot"
-
-  ConfigRule29:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-35-rds-instance-public-access-check"
-      Description: "RDS DB 인스턴스가 공개적으로 액세스 가능한지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "RDS_INSTANCE_PUBLIC_ACCESS_CHECK"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::RDS::DBInstance"
-
-  ConfigRule30:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-36-rds-minor-version-upgrade-enabled"
-      Description: "RDS DB 인스턴스에 부 버전 업그레이드가 활성화되어 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "RDS_MINOR_VERSION_UPGRADE_ENABLED"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::RDS::DBInstance"
-
-  ConfigRule31:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-37-rds-logging-enabled"
-      Description: "RDS DB 인스턴스에 로깅이 활성화되어 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "RDS_LOGGING_ENABLED"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::RDS::DBInstance"
