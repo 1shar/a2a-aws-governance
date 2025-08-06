@@ -1,13 +1,21 @@
 import logging
 import cfnlint.core
-import cfnlint.decode.cfn_yaml
+import cfnlint.decode
 import cfnlint.runner
 
 def validate_cfn_template(template_path):
     """Validates a CloudFormation template using cfn-lint programmatically."""
     try:
-        template, _ = cfnlint.decode.cfn_yaml.load(template_path)
-        
+        # Use the main decode function which handles both YAML and JSON
+        # It returns the template and any decoding errors (matches)
+        template, matches = cfnlint.decode.decode(template_path)
+
+        # Check if there were any errors just loading/parsing the file
+        if matches:
+            error_messages = "\n".join([str(e) for e in matches])
+            logging.error(f"CloudFormation template is malformed:\n{error_messages}")
+            return False
+
         # Get default rules from cfn-lint
         rules = cfnlint.core.get_rules([], [], [])
         
