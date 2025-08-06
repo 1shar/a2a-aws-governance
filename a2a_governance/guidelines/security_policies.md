@@ -17,9 +17,6 @@ AWS-10	인스턴스 로깅 설정
 AWS-11	EC2 Public IP 할당 금지
 AWS-12 	가상머신 이미지 Public 설정 금지
 AWS-13 	서버리스 함수 Secrets값 입력 금지
-AWS-20 VPC 망분리 필요(DEV, STG, PRD)
-AWS-21 환경간 VPC 피어링 금지
-AWS-22 VPC 로깅 설정
 AWS-23 Security Group Rule ₴ 21
 AWS-24 통신구간 암호화 설정
 AWS-25 NAT 게이트웨이 연결 최소화
@@ -35,6 +32,7 @@ AWS-34 RDS 스냅샷 퍼블릭 금지
 AWS-35 RDS Public IP ₴7|
 AWS-36 Database 마이너 버전 업그레이드
 AWS-37 Database 로깅 설정
+
 
 5. 룰에 대한 마크다운 설명 템플릿이 맘에 안들어, 이런식으로 해줘, 그리고 가이드는 한글로 설명해줘야해
 예시)
