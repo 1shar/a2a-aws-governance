@@ -107,3 +107,15 @@ Resources:
       Scope:
         ComplianceResourceTypes:
           - "AWS::RDS::DBSnapshot"
+
+  ConfigRule10:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: "AWS-35-rds-instance-public-access-check"
+      Description: "RDS DB 인스턴스가 공개적으로 액세스 가능한지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "RDS_INSTANCE_PUBLIC_ACCESS_CHECK"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::RDS::DBInstance"

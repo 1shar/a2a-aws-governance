@@ -13,6 +13,7 @@
 | AWS-32 | encrypted-volumes | EC2 인스턴스에 연결된 EBS 볼륨이 암호화되어 있는지 확인합니다. |
 | AWS-33 | rds-storage-encrypted | RDS DB 인스턴스에 대해 스토리지 암호화가 활성화되어 있는지 확인합니다. |
 | AWS-34 | rds-snapshots-public-prohibited | RDS 스냅샷이 공개되어 있는지 확인합니다. |
+| AWS-35 | rds-instance-public-access-check | RDS DB 인스턴스가 공개적으로 액세스 가능한지 확인합니다. |
 
 
 ---
@@ -134,5 +135,18 @@
 
 **Remediation**
 > 대중과 공유할 의도가 없는 한 RDS 스냅샷을 공개하지 마십시오. 이 작업을 수행하는 방법에 대한 지침은 [AWS 설명서](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ShareSnapshot.html)를 참조하십시오.
+
+---
+
+### AWS-35-rds-instance-public-access-check
+
+**Description**
+> RDS DB 인스턴스가 공개적으로 액세스 가능한지 확인합니다.
+
+**Rationale**
+> 인터넷에서 액세스할 필요가 없는 RDS DB 인스턴스는 공개적으로 액세스할 수 없어야 합니다. 이는 AWS 계정의 공격 표면을 줄입니다.
+
+**Remediation**
+> RDS DB 인스턴스를 공개적으로 액세스할 수 있도록 만들지 마십시오. 대신 배스천 호스트나 VPN을 사용하여 인스턴스에 액세스하십시오.
 
 ---
