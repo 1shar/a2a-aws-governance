@@ -5,7 +5,7 @@ def validate_cfn_template(template_path):
     """Validates a CloudFormation template using cfn-lint."""
     try:
         subprocess.run(
-            ['cfn-lint', template_path],
+            ['python', '-m', 'cfnlint', template_path],
             check=True,
             capture_output=True,
             text=True
