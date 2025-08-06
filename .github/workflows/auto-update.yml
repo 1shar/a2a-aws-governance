@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'a2a_governance/**'
 
 jobs:
   build-and-commit:
