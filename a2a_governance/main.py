@@ -52,5 +52,9 @@ def main():
     generate_excel_report(active_rule_ids, all_rules_config, 'a2a_governance/output/aws-config-rules.xlsx')
     print("Successfully generated Excel report.")
 
+    # 7. Documentation Generator Agent
+    generate_docs(active_rule_ids, all_rules_config, 'a2a_governance/templates/doc_template.j2', 'a2a_governance/output/aws-config-rules.md')
+    print("Successfully generated Markdown documentation.")
+
 if __name__ == "__main__":
     main()
