@@ -21,7 +21,7 @@ jobs:
         python-version: '3.10'
 
     - name: Install dependencies
-      run: pip install -r ../requirements.txt
+      run: pip install -r a2a_governance/requirements.txt
 
     - name: Run script to generate rules
       run: python a2a_governance/main.py
