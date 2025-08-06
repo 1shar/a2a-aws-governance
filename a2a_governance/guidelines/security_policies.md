@@ -4,34 +4,16 @@
 ex) "AWS-01-root-mfa-check" 이런 느낌 알지?
 4. 필요한 룰은 다음과 같아, 해당 내역에 대해 만들어줘
 
-AWS-01	큰솔 접속 계정 (Root, Sub 등) MFA 설정 
-
-
-AWS-04	Accesskey관리(키 교체주기 등)
-
-
-AWS-05	계정 패스워드 정책 관리
-
-
-AWS-06	IAM 사용자/그룹 Admin 권한 부여 금지
-
-
-AWS-29 객체 스토리지 Public Access 금지
-
-
-AWS-30 객체 스토리지 로깅 설정
-
-
-AWS 32 블록 스토리지 암호화 설정
-
-
-AWS-33 Database 암호화 설정
-
-
-AWS-34 RDS 스냅샷 퍼블릭 금지
-
-
-AWS-35 VPC 플로우로그 활성화여부 점검
+- AWS-01	큰솔 접속 계정 (Root, Sub 등) MFA 설정 
+- AWS-04	Accesskey관리(키 교체주기 등)
+- AWS-05	계정 패스워드 정책 관리
+- AWS-06	IAM 사용자/그룹 Administrator 권한 부여 금지
+- AWS-29 객체 스토리지 Public Access 금지
+- AWS-30 객체 스토리지 로깅 설정
+- AWS-32 블록 스토리지 암호화 설정
+- AWS-33 Database 암호화 설정
+- AWS-34 RDS 스냅샷 퍼블릭 금지
+- AWS-35 VPC 플로우로그 활성화여부 점검
 
 
 5. 룰에 대한 마크다운 설명 템플릿이 맘에 안들어, 이런식으로 해줘, 그리고 가이드는 한글로 설명해줘야해
