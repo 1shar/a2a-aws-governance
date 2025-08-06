@@ -30,7 +30,6 @@ AWS 32 블록 스토리지 암호화 설정
 AWS-33 Database 암호화 설정
 AWS-34 RDS 스냅샷 퍼블릭 금지
 AWS-35 RDS Public IP ₴7|
-AWS-36 Database 마이너 버전 업그레이드
 AWS-37 Database 로깅 설정
 
 
