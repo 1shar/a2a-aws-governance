@@ -16,5 +16,5 @@ def validate_cfn_template(template_path):
         logging.error("'cfn-lint' not found. Please install it using 'pip install cfn-lint'.")
         return False
     except subprocess.CalledProcessError as e:
-        logging.error(f"CloudFormation template validation failed: {e.stdout}")
+        logging.error(f"CloudFormation template validation failed:\nSTDOUT:\n{e.stdout}\nSTDERR:\n{e.stderr}")
         return False
