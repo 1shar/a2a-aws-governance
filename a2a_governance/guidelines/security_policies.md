@@ -7,7 +7,6 @@ ex) "AWS-01-root-mfa-check" 이런 느낌 알지?
 - AWS-01	큰솔 접속 계정 (Root, Sub 등) MFA 설정 
 - AWS-04	Accesskey관리(키 교체주기 등)
 - AWS-05	계정 패스워드 정책 관리
-- AWS-06	IAM 사용자/그룹 Administrator 권한 부여 금지
 - AWS-29 객체 스토리지 Public Access 금지
 - AWS-30 객체 스토리지 로깅 설정
 - AWS-32 블록 스토리지 암호화 설정
