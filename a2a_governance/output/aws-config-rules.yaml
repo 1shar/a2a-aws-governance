@@ -39,18 +39,6 @@ Resources:
   ConfigRule4:
     Type: 'AWS::Config::ConfigRule'
     Properties:
-      ConfigRuleName: "AWS-06-iam-policy-no-administrative-privileges-check"
-      Description: "IAM 정책이 관리자 권한을 부여하지 않는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "IAM_POLICY_NO_ADMINISTRATIVE_PRIVILEGES"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::IAM::Policy"
-
-  ConfigRule5:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
       ConfigRuleName: "AWS-29-s3-bucket-public-access-prohibited"
       Description: "S3 버킷이 공개 읽기/쓰기 액세스를 허용하지 않는지 확인합니다."
       Source:
@@ -60,7 +48,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::S3::Bucket"
 
-  ConfigRule6:
+  ConfigRule5:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-30-s3-bucket-logging-enabled"
@@ -72,7 +60,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::S3::Bucket"
 
-  ConfigRule7:
+  ConfigRule6:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-32-encrypted-volumes"
@@ -84,7 +72,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::EC2::Volume"
 
-  ConfigRule8:
+  ConfigRule7:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-33-rds-storage-encrypted"
@@ -96,7 +84,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::RDS::DBInstance"
 
-  ConfigRule9:
+  ConfigRule8:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-34-rds-snapshots-public-prohibited"
@@ -108,7 +96,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::RDS::DBSnapshot"
 
-  ConfigRule10:
+  ConfigRule9:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-35-rds-instance-public-access-check"
