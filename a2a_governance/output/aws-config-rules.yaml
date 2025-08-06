@@ -15,6 +15,18 @@ Resources:
   ConfigRule2:
     Type: 'AWS::Config::ConfigRule'
     Properties:
+      ConfigRuleName: "AWS-02-root-account-usage-check"
+      Description: "루트 계정이 지난 24시간 동안 사용되었는지 확인합니다."
+      Source:
+        Owner: "AWS"
+        SourceIdentifier: "ROOT_ACCOUNT_USED"
+      Scope:
+        ComplianceResourceTypes:
+          - "AWS::IAM::User"
+
+  ConfigRule3:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
       ConfigRuleName: "AWS-04-iam-user-access-key-check"
       Description: "IAM 사용자의 액세스 키가 지정된 일 수(기본값 90일) 내에 교체되었는지 확인합니다."
       Source:
@@ -24,7 +36,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::IAM::User"
 
-  ConfigRule3:
+  ConfigRule4:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-05-iam-password-policy-check"
@@ -36,7 +48,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::IAM::User"
 
-  ConfigRule4:
+  ConfigRule5:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-29-s3-bucket-public-access-prohibited"
@@ -48,7 +60,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::S3::Bucket"
 
-  ConfigRule5:
+  ConfigRule6:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-30-s3-bucket-logging-enabled"
@@ -60,7 +72,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::S3::Bucket"
 
-  ConfigRule6:
+  ConfigRule7:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-32-encrypted-volumes"
@@ -72,7 +84,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::EC2::Volume"
 
-  ConfigRule7:
+  ConfigRule8:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-33-rds-storage-encrypted"
@@ -84,7 +96,7 @@ Resources:
         ComplianceResourceTypes:
           - "AWS::RDS::DBInstance"
 
-  ConfigRule8:
+  ConfigRule9:
     Type: 'AWS::Config::ConfigRule'
     Properties:
       ConfigRuleName: "AWS-34-rds-snapshots-public-prohibited"
@@ -95,15 +107,3 @@ Resources:
       Scope:
         ComplianceResourceTypes:
           - "AWS::RDS::DBSnapshot"
-
-  ConfigRule9:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-35-rds-instance-public-access-check"
-      Description: "RDS DB 인스턴스가 공개적으로 액세스 가능한지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "RDS_INSTANCE_PUBLIC_ACCESS_CHECK"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::RDS::DBInstance"
