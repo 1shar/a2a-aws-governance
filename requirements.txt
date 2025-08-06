@@ -1,5 +1,0 @@
-PyYAML
-Jinja2
-cfn-lint
-openpyxl
-openpyxl
