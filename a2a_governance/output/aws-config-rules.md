@@ -12,7 +12,6 @@
 | AWS-30 | s3-bucket-logging-enabled | S3 버킷에 로깅이 활성화되어 있는지 확인합니다. |
 | AWS-32 | encrypted-volumes | EC2 인스턴스에 연결된 EBS 볼륨이 암호화되어 있는지 확인합니다. |
 | AWS-33 | rds-storage-encrypted | RDS DB 인스턴스에 대해 스토리지 암호화가 활성화되어 있는지 확인합니다. |
-| AWS-34 | rds-snapshots-public-prohibited | RDS 스냅샷이 공개되어 있는지 확인합니다. |
 
 
 ---
@@ -121,18 +120,5 @@
 
 **Remediation**
 > RDS DB 인스턴스에 대해 스토리지 암호화를 활성화하십시오. 이 작업을 수행하는 방법에 대한 지침은 [AWS 설명서](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)를 참조하십시오.
-
----
-
-### AWS-34-rds-snapshots-public-prohibited
-
-**Description**
-> RDS 스냅샷이 공개되어 있는지 확인합니다.
-
-**Rationale**
-> 대중과 공유할 의도가 없는 RDS 스냅샷은 공개해서는 안 됩니다. 이렇게 하면 권한 없는 사용자가 스냅샷에서 DB 인스턴스를 생성하는 것을 방지할 수 있습니다.
-
-**Remediation**
-> 대중과 공유할 의도가 없는 한 RDS 스냅샷을 공개하지 마십시오. 이 작업을 수행하는 방법에 대한 지침은 [AWS 설명서](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ShareSnapshot.html)를 참조하십시오.
 
 ---

@@ -95,15 +95,3 @@ Resources:
       Scope:
         ComplianceResourceTypes:
           - "AWS::RDS::DBInstance"
-
-  ConfigRule9:
-    Type: 'AWS::Config::ConfigRule'
-    Properties:
-      ConfigRuleName: "AWS-34-rds-snapshots-public-prohibited"
-      Description: "RDS 스냅샷이 공개되어 있는지 확인합니다."
-      Source:
-        Owner: "AWS"
-        SourceIdentifier: "RDS_SNAPSHOTS_PUBLIC_PROHIBITED"
-      Scope:
-        ComplianceResourceTypes:
-          - "AWS::RDS::DBSnapshot"
